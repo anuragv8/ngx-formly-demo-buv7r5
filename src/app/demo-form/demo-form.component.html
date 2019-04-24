@@ -1,0 +1,31 @@
+<div>
+	<form [formGroup]="form" (ngSubmit)="submit()">
+		<ngb-tabset justify="center">
+			<ngb-tab *ngFor="let tab of tabs; let index = index;" [title]="tab.label">
+				<ng-template ngbTabContent *ngIf="index!=1; else curtool">
+					<formly-form [model]="model" [fields]="tab.fields" [options]="options[index]">
+					</formly-form>
+				</ng-template>
+
+				<ng-template ngbTabContent #curtool>
+					<ngb-tabset justify="center">
+						<ngb-tab *ngFor="let tab of pTabs; let index2 = index;" [title]="tab.label">
+              <ng-template ngbTabContent>
+							<formly-form [model]="model" [fields]="tab.fields" [options]="options[index]">
+							</formly-form>
+              </ng-template>
+						</ngb-tab>
+					</ngb-tabset>
+				</ng-template>
+			</ngb-tab>
+
+			<ngb-tab title="Summary">
+				<ng-template ngbTabContent>
+					<h3 class="my-4">Submit this shit!</h3>
+					<button type="submit" class="btn btn-primary">Submit</button>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+
+  </form>
+</div>
